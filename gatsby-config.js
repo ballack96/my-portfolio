@@ -43,4 +43,3 @@ module.exports = {
   ],
 };
 
-console.log("Loaded process env variables:", process.env);
