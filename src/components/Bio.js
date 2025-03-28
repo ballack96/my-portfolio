@@ -1,6 +1,11 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaMedium } from 'react-icons/fa6'; // Ensure you've installed react-icons using npm or yarn
 import profileImage from '../images/DSC_0676.jpg'; // Adjust the path if necessary
+import { withPrefix } from "gatsby";
+
+
+const prefixed = (imgPath) => withPrefix(imgPath);
+
 
 const Bio = () => {
   return (
@@ -23,7 +28,7 @@ const Bio = () => {
         {/* Profile Image */}
         <div style={{ fontSize: '1rem', width: '45%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <img
-            src={profileImage}
+            src={prefixed(profileImage)}
             alt="Profile"
             style={{
               width: '15rem',

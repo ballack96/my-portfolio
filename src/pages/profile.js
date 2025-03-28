@@ -4,6 +4,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { graphql, useStaticQuery } from "gatsby";
 import ThesisCard from '../components/ThesisCard';
+import { withPrefix } from 'gatsby';
+
+const prefixed = (imgPath) => withPrefix(imgPath);
 
 
 const ProfilePage = () => {
@@ -50,7 +53,7 @@ const ProfilePage = () => {
 
   const handleIconError = (e, item) => {
     e.target.onerror = null;
-    e.target.src = `/tech-stack-logos/icons8-${item}.png`; // fallback to local image if CDN fails
+    e.target.src = prefixed(`/tech-stack-logos/icons8-${item}.png`); // fallback to local image if CDN fails
   };
 
 
@@ -118,7 +121,7 @@ const ProfilePage = () => {
         <Carousel responsive={responsive} infinite autoPlay>
           {achievements.map((ach, index) => (
             <div key={index} style={{ padding: '10px', textAlign: 'center'}}>
-              <img src={`/achievements/${ach.image}`} alt={ach.title} style={{ width: 'auto', height: '8rem', objectFit: 'cover' }} />
+              <img src={prefixed(`/achievements/${ach.image}`)} alt={ach.title} style={{ width: 'auto', height: '8rem', objectFit: 'cover' }} />
               <p style={{fontWeight: 'bold'}}>{ach.title}</p>
             </div>
           ))}
@@ -140,11 +143,12 @@ const ProfilePage = () => {
 
         <div style={{ textAlign: 'center', marginTop: '3rem' }}>
           <a
-            href="/resume.pdf"
-            download
+            href="https://drive.google.com/file/d/1kzNGTj6rP30FObaK17UHtCDJhQE8DgGT/view"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{ padding: '10px 20px', backgroundColor: '#48C9B0', color: '#fff', textDecoration: 'none', fontSize: '1.2rem', borderRadius: '5px' }}
           >
-            Download Resume
+            My Resume
           </a>
         </div>
       </section>

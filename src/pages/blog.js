@@ -5,7 +5,6 @@ import DataCard from '../components/DataCard';
 
 const extractImageFromHTML = (html) => {
   if (!html) return '';
-  // console.log('Raw HTML:', html);
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const imgTag = doc.querySelector('img');
