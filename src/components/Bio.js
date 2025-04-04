@@ -64,7 +64,6 @@ const Bio = () => {
             Here, you'll find a showcase of my work, blending data analysis and software development to solve real-world
             problems and create impactful tools.
           </p>
-
           {/* Social Icons */}
           <div style={{ marginTop: '0.5rem', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
             <a href="https://www.linkedin.com/in/ranojoy-deb/" target="_blank" rel="noopener noreferrer" style={{ marginRight: '12px' }}>
