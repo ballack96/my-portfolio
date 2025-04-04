@@ -1,17 +1,16 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import profileIcon from "../images/PixarMe.jpg"
 import { withPrefix } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image";
+import { withPrefix } from 'gatsby';
 
-const prefixed = (profileIcon) => withPrefix(profileIcon);
 
 const Header = ({ siteTitle = "Ranojoy Deb" }) => {
   return (
     <header style={{ background: '#5F6A6A', padding: '0.5%' }}>
       <div style={{ margin: 'auto', minWidth:'100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 1rem' }}>
         <h2 style={{ margin: 0, display: 'flex', alignItems: 'center', fontSize: '1', alignItems:'center', whiteSpace:'nowrap' }}>
-        <StaticImage src="../images/PixarMe.jpg"   style={{ maxWidth: '32px', maxHeight: '32px', marginRight: '5%', marginTop:'auto', marginBottom:'auto' }} />
+        <StaticImage src={withPrefix("../images/PixarMe.jpg")}   style={{ maxWidth: '32px', maxHeight: '32px', marginRight: '5%', marginTop:'auto', marginBottom:'auto' }} />
           <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
             {siteTitle}
           </Link>
