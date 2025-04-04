@@ -5,6 +5,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { graphql, useStaticQuery } from "gatsby";
 import ThesisCard from '../components/ThesisCard';
 import { withPrefix } from 'gatsby';
+import { GatsbyImage,getImage } from "gatsby-plugin-image";
 
 const prefixed = (imgPath) => withPrefix(imgPath);
 
@@ -33,6 +34,7 @@ const ProfilePage = () => {
             id
             title
             description
+            gatsbyImageData(layout: CONSTRAINED)
             file {
               url
             }
@@ -41,6 +43,7 @@ const ProfilePage = () => {
             id
             title
             description
+            gatsbyImageData(layout: CONSTRAINED)
             file {
               url
             }
@@ -59,15 +62,12 @@ const ProfilePage = () => {
 
   const images = data.contentfulGatsbyPortfolio.imageLibrary;
   
-  const achievements = [
-    { title: "Mu Sigma IMPACT AWARD", image: images["mu-sigma"] },
-    { title: "2x Mu Sigma SPOT AWARD", image: images["mu-sigma"] },
-    { title: "Project Management Office (PMO) Fundamentals", image: "pmo-fundamentals.png"},
-    { title: "Chancellor's Scholarship", image: "penn-state-gv.png"},
-    { title: "Warren V. Musser Fellowship in Entrepreneurial Studies", image: "penn-state-gv.png" },
-    { title: "Nittany AI Challenge 2023 Finalist", image: "nittanyai-finalist.png" },
-    { title: "Azure Fundamentals", image: "azure-fundamentals.png" },
-  ];
+  const achievements = data.contentfulGatsbyPortfolio.achievements;
+
+  const techStackLogo = data.contentfulGatsbyPortfolio.logos.reduce((acc, logo) => {
+      acc[logo.title] = acc[logo.file.url]
+      return acc;
+  }, {});
 
 
 
@@ -78,6 +78,7 @@ const ProfilePage = () => {
 
 
   return (
+    console.log("Achievements: ", achievements),
     <Layout>
       <section style={{ padding: '0.5rem', maxWidth: '1600px', margin: '0 auto', textAlign: 'justify' }}>
         <h2 style={{ fontSize: '2rem', color: '#34495E' }}>🙋‍♂️ About Me</h2>
@@ -139,10 +140,10 @@ const ProfilePage = () => {
       ))} 
         <h2 style={{ marginTop: '2rem', fontSize: '2rem', color: '#34495E' }}>🏆 Achievements</h2>
         <Carousel responsive={responsive} infinite autoPlay>
-          {achievements.map((ach, index) => (
-            <div key={index} style={{ padding: '10px', textAlign: 'center'}}>
-              <img src={prefixed(`/achievements/${ach.image}`)} alt={ach.title} style={{ width: 'auto', height: '8rem', objectFit: 'cover' }} />
-              <p style={{fontWeight: 'bold'}}>{ach.title}</p>
+        {achievements.map((ach, index) => (
+            <div key={index} style={{ padding: '10px', textAlign: 'center' }}>
+              <GatsbyImage image={getImage(ach)} alt={ach.title} style={{  width: '7rem', maxHeight: '7rem', objectFit: 'initial' }} />
+              <p style={{ fontWeight: 'bold' }}>{ach.title}</p>
             </div>
           ))}
         </Carousel>
@@ -155,7 +156,7 @@ const ProfilePage = () => {
         <Carousel responsive={responsive} infinite autoPlay>
           {images.map((img, index) => (
             <div key={index} style={{ textAlign: 'center', padding: '10px' }}>
-              <img src={img.file.url} alt={img.title} style={{ width: '80%', height: '300px', objectFit: 'cover' }} />
+              <GatsbyImage image={getImage(img)} alt={img.title} style={{ height: '300px' }} />
               <p style={{fontWeight: 'bold'}}>{img.title}</p>
             </div>
           ))}
