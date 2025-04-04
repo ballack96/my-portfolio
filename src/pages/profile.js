@@ -87,7 +87,7 @@ const ProfilePage = () => {
           My career has been dedicated to solving real-world problems using AI, DevOps, and scalable software solutions. My journey started with my time working for Mu Sigma in Bangalore, 
           where over the course of 4 years led a team of decision scientists and data engineers to build data products for Fortune 500 companies.
           <br />
-          This experience led me to pursue a Master's degree in Data Science from the University of Pennsylvania, where I worked as a Graduate Research Assistant. During this time, I developed my academic research skills while working on my thesis under Dr. Dusan Ramljak.
+          This experience led me to pursue a Master's degree in Data Analytics from the Pennsylvania State University, where I worked as a Graduate Research Assistant. During this time, I developed my academic research skills while working on my thesis under Dr. Dusan Ramljak.
           <ThesisCard />
           I am passionate about learning and sharing knowledge, which is why I am actively involved in the tech startup community here in the Greater Philadelphia Area. I am always looking for new opportunities to collaborate and innovate.
         </p>
