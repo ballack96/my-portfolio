@@ -4,13 +4,14 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { withPrefix } from 'gatsby';
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+
 
 const generatePlaceholderImage = (title) => {
   return `https://api.oneapipro.com/images/placeholder?text=${title}&width=318&height=200&color=524d66d`
 };
 
-const prefixed = (imgPath) => withPrefix(imgPath);
+
 
 
 const DataCard = ({ title, description, link, image }) => {
@@ -22,10 +23,13 @@ const DataCard = ({ title, description, link, image }) => {
   return (
     <Card style={{ width: '350px', height: '500px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', margin: '5px auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <img
-        src={prefixed(image)}
+        src={image}
         onError={(e) => { e.target.onerror = null; e.target.src = generatePlaceholderImage(title); }}
         alt={title}
         style={{ width: '100%', height: '200px', objectFit: 'cover' }}
+        placeholder="blurred"
+        layout="fixed"
+
       />
       <CardContent style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
         <div>

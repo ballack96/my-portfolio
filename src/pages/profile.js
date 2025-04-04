@@ -17,15 +17,7 @@ const ProfilePage = () => {
     "Cloud Platforms & DevOps": ["azure", "aws", "firebase", "git", "docker", "kubernetes", "apacheairflow"]
   };
 
-  const achievements = [
-    { title: "Mu Sigma IMPACT AWARD", image: "mu-sigma.png" },
-    { title: "2x Mu Sigma SPOT AWARD", image: "mu-sigma.png" },
-    { title: "Project Management Office (PMO) Fundamentals", image: "pmo-fundamentals.png"},
-    { title: "Chancellor's Scholarship", image: "penn-state-gv.png"},
-    { title: "Warren V. Musser Fellowship in Entrepreneurial Studies", image: "penn-state-gv.png" },
-    { title: "Nittany AI Challenge 2023 Finalist", image: "nittanyai-finalist.png" },
-    { title: "Azure Fundamentals", image: "azure-fundamentals.png" },
-  ];
+
 
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 1024 }, items: 3 },
@@ -37,19 +29,47 @@ const ProfilePage = () => {
   const data = useStaticQuery(graphql`
     query {
       contentfulGatsbyPortfolio {
-        imageLibrary {
-          id
-          title
-          description
-          file {
-            url
+          achievements {
+            id
+            title
+            description
+            file {
+              url
+            }
+          },
+          imageLibrary{
+            id
+            title
+            description
+            file {
+              url
+            }
+          },
+          logos{
+            id
+            title
+            description
+            file {
+              url
+            }
           }
         }
-      }
     }
   `);
 
   const images = data.contentfulGatsbyPortfolio.imageLibrary;
+  
+  const achievements = [
+    { title: "Mu Sigma IMPACT AWARD", image: images["mu-sigma"] },
+    { title: "2x Mu Sigma SPOT AWARD", image: images["mu-sigma"] },
+    { title: "Project Management Office (PMO) Fundamentals", image: "pmo-fundamentals.png"},
+    { title: "Chancellor's Scholarship", image: "penn-state-gv.png"},
+    { title: "Warren V. Musser Fellowship in Entrepreneurial Studies", image: "penn-state-gv.png" },
+    { title: "Nittany AI Challenge 2023 Finalist", image: "nittanyai-finalist.png" },
+    { title: "Azure Fundamentals", image: "azure-fundamentals.png" },
+  ];
+
+
 
   const handleIconError = (e, item) => {
     e.target.onerror = null;

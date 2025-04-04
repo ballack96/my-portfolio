@@ -16,6 +16,7 @@ require("dotenv").config({
 
 module.exports = {
   pathPrefix: "/my-portfolio",  // GitHub Pages path 
+  assetPrefix: "/my-portfolio", // for broken fonts/images
   siteMetadata: {
     title: `My Portfolio`,
     description: `A simple portfolio website.`,
