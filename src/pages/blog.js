@@ -8,7 +8,6 @@ const extractImageFromHTML = (html) => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, 'text/html');
   const imgTag = doc.querySelector('img');
-  console.log('Extracted Image Tag:', imgTag);
   return imgTag ? imgTag.src : '';
 };
 

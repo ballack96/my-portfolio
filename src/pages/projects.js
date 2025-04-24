@@ -11,15 +11,12 @@ const UNSPLASH_ACCESS_KEY = process.env.GATSBY_UNSPLASH_ACCESS_KEY;
 
 const generatePlaceholderImage = async (title) => {
   try {
-    console.log("Fetching Unsplash image for:", title);
     const response = await axios.get(`https://api.unsplash.com/photos/random`, {
       params: { query: title, orientation: 'landscape' },
       headers: { Authorization: `Client-ID ${UNSPLASH_ACCESS_KEY}` },
     });
-    console.log("Unsplash Response:", response.data.urls.regular);
     return response.data.urls.regular;
   } catch (error) {
-    console.error('Error fetching Unsplash image:', error.response ? error.response.data : error.message);
     return `https://api.oneapipro.com/images/placeholder?text=${encodeURIComponent(title)}&width=318&height=200&color=524d66d`;
   }
 };

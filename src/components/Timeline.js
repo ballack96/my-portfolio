@@ -74,7 +74,6 @@ const HorizontalTimeline = () => {
       <h2 style={{ textAlign: 'center', marginBottom: '2rem' }}>Professional Experience</h2>
       <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', flexWrap: 'wrap', padding: '0.5rem' }}>
         {experiences.map((exp, index) => (
-          console.log('Experience:', exp),
           <Card key={index} style={{ minWidth: '300px', maxWidth: '300px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)' }}>
             <CardContent>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '150px', marginBottom: '1rem' }}>

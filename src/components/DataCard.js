@@ -15,10 +15,6 @@ const generatePlaceholderImage = (title) => {
 
 const DataCard = ({ title, description, link, image }) => {
 
-  useEffect(() => {
-    console.log('CustomCard Props:', {image});
-  }, [image]);
-
   return (
     <Card style={{ width: '350px', height: '500px', border: '1px solid #48C9B0', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', margin: '5px auto', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <img

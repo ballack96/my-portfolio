@@ -78,7 +78,6 @@ const ProfilePage = () => {
 
 
   return (
-    console.log("Achievements: ", achievements),
     <Layout>
       <section style={{ padding: '0.5rem', maxWidth: '1600px', margin: '0 auto', textAlign: 'justify' }}>
         <h2 style={{ fontSize: '2rem', color: '#34495E' }}>🙋‍♂️ About Me</h2>
