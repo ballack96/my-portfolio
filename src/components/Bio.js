@@ -1,10 +1,8 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaMedium } from 'react-icons/fa6'; // Ensure you've installed react-icons using npm or yarn
-import { withPrefix } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 
 
-const prefixed = (imgPath) => withPrefix(imgPath);
 
 
 const Bio = () => {

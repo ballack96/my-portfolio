@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { withPrefix } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image";
-import { withPrefix } from 'gatsby';
+
 
 
 const Header = ({ siteTitle = "Ranojoy Deb" }) => {
