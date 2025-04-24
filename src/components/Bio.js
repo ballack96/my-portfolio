@@ -26,7 +26,7 @@ const Bio = () => {
         {/* Profile Image */}
         <div style={{ fontSize: '1rem', width: '45%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <StaticImage
-            src="../images/DSC_0676.jpg"
+            src="/images/DSC_0676.jpg"
             alt="Profile"
             style={{
               width: '15rem',
