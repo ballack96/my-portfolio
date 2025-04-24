@@ -1,8 +1,7 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaMedium } from 'react-icons/fa6'; // Ensure you've installed react-icons using npm or yarn
 import { StaticImage } from "gatsby-plugin-image";
-
-
+import { withPrefix } from "gatsby"
 
 
 const Bio = () => {
@@ -26,7 +25,7 @@ const Bio = () => {
         {/* Profile Image */}
         <div style={{ fontSize: '1rem', width: '45%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <StaticImage
-            src="/images/DSC_0676.jpg"
+            src={withPrefix("/images/DSC_0676.jpg")}
             alt="Profile"
             style={{
               width: '15rem',
