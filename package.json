@@ -4,7 +4,6 @@
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "author": "@ballack96",
-  "homepage": "https://ballack96.github.io/my-portfolio",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.14.0",
@@ -44,7 +43,7 @@
   ],
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build  --prefix-paths",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
     "start": "gatsby develop",
