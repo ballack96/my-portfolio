@@ -32,7 +32,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/static/images`,
+        path: `${__dirname}/static`,
       },
     },
     {
@@ -45,9 +45,10 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        // allowList: ["GATSBY_UNSPLASH_ACCESS_KEY"], // Ensure Gatsby allows this variable
+        allowList: ["GATSBY_UNSPLASH_ACCESS_KEY"], // Ensure Gatsby allows this variable
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        downloadLocal: true, // This helps with local development
       },
     }, // <- Closing bracket added here
   ],

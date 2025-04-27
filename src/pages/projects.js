@@ -5,11 +5,16 @@ import DataCard from '../components/DataCard';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-
-// Load environment variables
-const UNSPLASH_ACCESS_KEY = process.env.GATSBY_UNSPLASH_ACCESS_KEY;
-
+// Create a safe placeholder generator that handles SSR
 const generatePlaceholderImage = async (title) => {
+  // Ensure we have a valid environment variable, fallback to placeholder if not
+  const UNSPLASH_ACCESS_KEY = process.env.GATSBY_UNSPLASH_ACCESS_KEY || '';
+  
+  // If we're in SSR or don't have the API key, return a placeholder
+  if (typeof window === 'undefined' || !UNSPLASH_ACCESS_KEY) {
+    return `https://api.oneapipro.com/images/placeholder?text=${encodeURIComponent(title)}&width=318&height=200&color=524d66d`;
+  }
+  
   try {
     const response = await axios.get(`https://api.unsplash.com/photos/random`, {
       params: { query: title, orientation: 'landscape' },
@@ -27,6 +32,9 @@ const ProjectsPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // Skip execution during SSR
+    if (typeof window === 'undefined') return;
+    
     const fetchGitHubProjects = async () => {
       try {
         const githubUsername = 'ballack96'; // Replace with your GitHub username
@@ -35,7 +43,7 @@ const ProjectsPage = () => {
         if (response.data) {
           const formattedProjects = await Promise.all(
             response.data.map(async (project) => {
-              const image = (await generatePlaceholderImage(project.name));
+              const image = await generatePlaceholderImage(project.name);
               return {
                 ...project,
                 name: project.name
@@ -54,9 +62,9 @@ const ProjectsPage = () => {
         setLoading(false);
       }
     };
+    
     fetchGitHubProjects();
   }, []);
-
 
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 1024 }, items: 1 },
@@ -65,12 +73,23 @@ const ProjectsPage = () => {
     mobile: { breakpoint: { max: 464, min: 0 }, items: 1 },
   };
 
+  // Render initial state for SSR
+  if (typeof window === 'undefined') {
+    return (
+      <Layout>
+        <section style={{ padding: '1rem', textAlign: 'center' }}>
+          <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>🛠️ My Projects</h2>
+          <h3>Loading projects...</h3>
+        </section>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
       <section style={{ padding: '1rem', textAlign: 'center' }}>
-      <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>🛠️ My Projects</h2>
-      {loading ? (
+        <h2 style={{ marginBottom: '2rem', fontSize: '2rem', color: '#34495E' }}>🛠️ My Projects</h2>
+        {loading ? (
           <h3 style={{ textAlign: 'center' }}>🔄 Loading projects...</h3>
         ) : error ? (
           <h3 style={{ textAlign: 'center', color: 'red' }}>{error}</h3>
@@ -96,7 +115,7 @@ const ProjectsPage = () => {
                 </div>
               ))}
           </Carousel>
-      )}
+        )}
       </section>
     </Layout>
   );
