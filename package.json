@@ -36,6 +36,7 @@
     "tech-stack-icons": "^2.1.0"
   },
   "devDependencies": {
+    "gatsby-cli": "^5.14.0",
     "prettier": "^2.8.8"
   },
   "keywords": [
