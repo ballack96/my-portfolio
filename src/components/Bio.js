@@ -1,10 +1,25 @@
 import React from 'react';
 import { FaLinkedin, FaGithub, FaMedium } from 'react-icons/fa6'; // Ensure you've installed react-icons using npm or yarn
-import { StaticImage } from "gatsby-plugin-image";
-import { withPrefix } from "gatsby"
-
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Bio = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      contentfulGatsbyPortfolio {
+        headshots {
+          title
+          gatsbyImageData(layout: FIXED, width: 275, placeholder: BLURRED)
+        }
+      }
+    }
+  `);
+
+  const profileHeadshot = data.contentfulGatsbyPortfolio.headshots.find(
+    (img) => img.title.toLowerCase() === "profileimage"
+  );
+
+  
   return (
     <section className="hero-section" style={{ textAlign: 'justify', padding: '1rem 1rem' }}>
       <div
@@ -24,17 +39,9 @@ const Bio = () => {
       >
         {/* Profile Image */}
         <div style={{ fontSize: '1rem', width: '45%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <StaticImage
-            src={withPrefix("/images/DSC_0676.jpg")}
-            alt="Profile"
-            style={{
-              width: '15rem',
-              heiught: 'auto',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              flexShrink: 0,
-            }}
-          />
+          {profileHeadshot && (
+            <GatsbyImage image={getImage(profileHeadshot)} alt="Profile Photo" style={{ borderRadius: "50%" }} />
+          )} 
           <h4
             style={{
               fontWeight: 'bold',
