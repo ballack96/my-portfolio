@@ -37,7 +37,7 @@ const HorizontalTimeline = () => {
 
   const experiences = [
     {
-      title: 'Full-Stack Developer',
+      title: 'AI/Full-Stack Developer',
       employer: 'Kiss Applications Inc.',
       date: 'Nov 2024 - Present',
       logo: logoMap['kissuxlogo']
